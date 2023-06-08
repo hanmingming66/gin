@@ -22,7 +22,7 @@ func wxCallbackHandler(c *gin.Context) {
 
 	// 实际应用中可添加额外的逻辑进行安全校验，例如判断请求的来源IP是否合法等
 
-	token := "your_token"
+	token := "tt11232342"
 	if !checkSignature(token, timestamp, nonce, signature) {
 		c.AbortWithStatusJSON(403, gin.H{"error": "Invalid signature"})
 		return

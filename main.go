@@ -1,21 +1,20 @@
 package main
 
-
 import (
 	"crypto/sha1"
 	"fmt"
-	"log"
 	"sort"
 	"strings"
 
 	"github.com/gin-gonic/gin"
 )
+
 func wxCallbackHandler(c *gin.Context) {
 	signature := c.Query("signature")
 	timestamp := c.Query("timestamp")
 	nonce := c.Query("nonce")
 	echoStr := c.Query("echostr")
-	fmt.Println("收到消息",echoStr)
+	fmt.Println("收到消息", echoStr)
 	if signature == "" || timestamp == "" || nonce == "" {
 		c.AbortWithStatusJSON(400, gin.H{"error": "Invalid request"})
 		return
@@ -52,7 +51,8 @@ func checkSignature(token, timestamp, nonce, signature string) bool {
 	return signature == signatureCalculated
 }
 
-var Router * gin.Engine
+var Router *gin.Engine
+
 func main() {
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
